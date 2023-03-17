@@ -5,6 +5,8 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
+import HtmlLoaderinputStyle from './html-loader-input-style';
+
 const HtmlLoaderInput = () => {
   const [selectedFile, seSelectedFile] = useState('No file...');
 
@@ -17,24 +19,20 @@ const HtmlLoaderInput = () => {
   };
 
   return (
-    <Box sx={{ display: 'flex' }}>
-      <Button
-        component="label"
-        sx={{
-          borderTopRightRadius: 0,
-          borderBottomRightRadius: 0,
-          borderRight: '1px solid #AEAEAE',
-          backgroundColor: '#D4D4D4',
-          color: 'primary.dark',
-        }}
-      >
-        Browse
-        <input type="file" hidden onChange={changeHandler} />
-      </Button>
-      <Typography sx={{ pt: 1, backgroundColor: '#EAEAEA', width: '300px' }}>
-        {selectedFile}
+    <>
+      <Typography sx={HtmlLoaderinputStyle.title}>
+        Load HTML template
       </Typography>
-    </Box>
+      <Box sx={HtmlLoaderinputStyle.inputWrap}>
+        <Button component="label" sx={HtmlLoaderinputStyle.uploadButton}>
+          Browse
+          <input type="file" hidden onChange={changeHandler} />
+        </Button>
+        <Typography sx={HtmlLoaderinputStyle.selectedFile}>
+          {selectedFile}
+        </Typography>
+      </Box>
+    </>
   );
 };
 

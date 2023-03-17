@@ -12,4 +12,11 @@ export const theme = createTheme({
       dark: '#000',
     },
   },
+  typography: {
+    fontFamily: `'JetBrains Mono', monospace`,
+    fontSize: 14,
+    fontWeightLight: 300,
+    fontWeightRegular: 400,
+    fontWeightMedium: 500,
+  },
 });

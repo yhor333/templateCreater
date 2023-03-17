@@ -1,6 +1,5 @@
 body {
-  font-family: 'Open Sans', sans-serif;
-  overflow-x: hidden;
+  font-family: 'JetBrains Mono', monospace;
 }
 
 /* Указываем box sizing */
