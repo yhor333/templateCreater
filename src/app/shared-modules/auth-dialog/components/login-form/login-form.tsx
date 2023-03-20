@@ -11,17 +11,20 @@ import { CustomDialogTitle } from '../../../dialog';
 import { CustomFormControl } from '../../../custom-form';
 import { AuthStateEnum } from '../auth-dialog';
 
+import authService from '../../../../shared/services/auth-service';
+import { createUrlParams } from '../../helpers/create-url-params';
+
 import LoginFormStyles from './login-form-styles';
 
 const schema = yup
   .object({
-    email: yup
+    username: yup
       .string()
-      .email('Це поле повинно бути емейлом')
+      .min(4, 'Поле повинно містити мінімум 4 символів')
       .required('Це поле повинно бути заповнене'),
     password: yup
       .string()
-      .min(8, 'Пароль повинен містити мінімум 8 символів')
+      .min(4, 'Пароль повинен містити мінімум 4 символів')
       .required('Це поле повинно бути заповнене'),
   })
   .required();
@@ -47,14 +50,15 @@ const LoginForm: FC<ILoginForm> = ({ onClose, toggleAuthState }) => {
     resolver: yupResolver(schema),
   });
 
-  // const loadUser = useUserStore((state) => state.loadUser);
-  // const setIsLoading = useUserStore((state) => state.setIsLoading);
+  const loadUser = useUserStore((state) => state.loadUser);
+  const setIsLoading = useUserStore((state) => state.setIsLoading);
 
-  // const onSubmit = async (data: LoginFormData) => {
-  //   AuthService.login(data, loadUser, setIsLoading).catch((error) =>
-  //     console.log(error)
-  //   );
-  // };
+  const onSubmit = async (data: LoginFormData) => {
+    const params = createUrlParams(data);
+    authService
+      .login(params, loadUser, setIsLoading)
+      .catch((error) => console.log(error));
+  };
   return (
     <Fragment>
       <Box sx={LoginFormStyles.box}>
@@ -62,12 +66,12 @@ const LoginForm: FC<ILoginForm> = ({ onClose, toggleAuthState }) => {
           Вхід в особистий кабінет
         </CustomDialogTitle>
       </Box>
-      <form className="form">
+      <form className="form" onSubmit={handleSubmit(onSubmit)}>
         <Box sx={LoginFormStyles.formBox}>
-          <CustomFormControl<'email'>
-            register={register('email')}
-            error={errors.email?.message}
-            label={'Емейл'}
+          <CustomFormControl<'username'>
+            register={register('username')}
+            error={errors.username?.message}
+            label={'Юзернейм'}
             styles={formControlStyles}
           />
           <CustomFormControl
