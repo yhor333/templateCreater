@@ -1,5 +1,4 @@
 import axios from 'axios';
-const Cookies = require('js-cookie');
 
 export const instance = axios.create({
   baseURL: 'http://185.235.218.150:8050/',

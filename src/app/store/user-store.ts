@@ -10,7 +10,7 @@ interface UserState {
   isLoading: boolean;
   setUser: (user: UserModel | null) => void;
   setIsLoading: (isLoading: boolean) => void;
-  loadUser: () => void;
+  // loadUser: () => void;
 }
 
 const useUserStore = create<UserState>()(
@@ -26,10 +26,10 @@ const useUserStore = create<UserState>()(
         set((state) => {
           state.isLoading = isLoading;
         }),
-      loadUser: async () => {
-        const user = await instance.get('/auth/profile');
-        set({ user: user.data, isLoading: false });
-      },
+      // loadUser: async () => {
+      //   const user = await instance.get('/auth');
+      //   set({ user: user.data, isLoading: false });
+      // },
     }))
   )
 );

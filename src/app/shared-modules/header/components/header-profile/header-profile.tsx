@@ -4,8 +4,6 @@ import { Link } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import Avatar from '@mui/material/Avatar';
 
 import useUserStore from '../../../../store/user-store';
 import HeaderProfileStyles from './header-profile-styles';

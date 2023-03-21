@@ -50,13 +50,13 @@ const LoginForm: FC<ILoginForm> = ({ onClose, toggleAuthState }) => {
     resolver: yupResolver(schema),
   });
 
-  const loadUser = useUserStore((state) => state.loadUser);
+  // const loadUser = useUserStore((state) => state.loadUser);
   const setIsLoading = useUserStore((state) => state.setIsLoading);
 
   const onSubmit = async (data: LoginFormData) => {
     const params = createUrlParams(data);
     authService
-      .login(params, loadUser, setIsLoading)
+      .login(params, setIsLoading)
       .catch((error) => console.log(error));
   };
   return (
