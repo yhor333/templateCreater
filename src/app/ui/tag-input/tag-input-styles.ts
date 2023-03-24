@@ -2,7 +2,6 @@ const TagInpuStyles = {
   wrap: { display: 'flex', mb: 5, justify: 'center' },
   title: { fontSize: '20px', alignSelf: 'center', mr: 4 },
   textFieldWrap: {
-    width: '100%',
     mr: 2,
     position: 'relative',
   },
@@ -10,7 +9,7 @@ const TagInpuStyles = {
     display: 'flex',
     flexDirection: 'column',
     width: '110px',
-    justifyContent: 'space-between',
+    justifyContent: 'start',
   },
   button: {
     fontSize: '12px',
@@ -18,6 +17,7 @@ const TagInpuStyles = {
     backgroundColor: 'primary.main',
     color: 'primary.dark',
     width: '86px',
+    mb: 1,
     '&:hover': {
       backgroundColor: 'primary.light',
     },
@@ -31,7 +31,13 @@ const TagInpuStyles = {
       backgroundColor: 'rgba(0, 0, 0, 0)',
     },
   },
-  textField: { width: '100%' },
+  textField: {
+    paddingTop: '30px',
+    maxWidth: '510px',
+    width: '500px',
+    minWidth: '150px',
+    background: '#D9D9D9',
+  },
 };
 
 export default TagInpuStyles;

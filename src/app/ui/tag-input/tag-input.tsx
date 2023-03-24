@@ -5,6 +5,7 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import ClearIcon from '@mui/icons-material/Clear';
+import TextareaAutosize from '@mui/base/TextareaAutosize';
 
 import TagInpuStyles from './tag-input-styles';
 import IconButton from '@mui/material/IconButton';
@@ -31,18 +32,16 @@ const TagInput: FC<ITagInput> = ({ title, onChange, handleButton }) => {
         >
           <ClearIcon />
         </IconButton>
-        <TextField
-          hiddenLabel
+        <TextareaAutosize
           id={`filled-hidden-normal-${title}`}
-          variant="filled"
           disabled={isFileUpload}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>): void => {
+          onChange={(e: any): void => {
             setInputValue(e.target.value);
             onChange(e);
           }}
           name={title}
           value={inputValue}
-          sx={TagInpuStyles.textField}
+          style={TagInpuStyles.textField}
         />
       </Box>
 
