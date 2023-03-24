@@ -4,7 +4,7 @@ import { instance } from '../../../shared/instance/axios-instance/axios-instance
 
 import useTagsStore from '../../../store/tags-store';
 
-class HtmlLodareServise {
+class HtmlLodareService {
   async sendFiel(
     fiel: File,
     setTags: Dispatch<SetStateAction<any>>
@@ -30,6 +30,6 @@ class HtmlLodareServise {
   }
 }
 
-const htmlLodareServise = new HtmlLodareServise();
+const htmlLodareService = new HtmlLodareService();
 
-export default htmlLodareServise;
+export default htmlLodareService;

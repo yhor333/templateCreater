@@ -7,7 +7,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
-import htmlLodareServise from '../../api/html-loader-servise';
+import htmlLodareService from '../../api/html-loader-service';
 
 import HtmlLoaderinputStyle from './html-loader-input-style';
 
@@ -22,7 +22,7 @@ const HtmlLoaderInput = () => {
     const file = event.target.files;
 
     if (file !== null) {
-      htmlLodareServise.sendFiel(file[0], setTags);
+      htmlLodareService.sendFiel(file[0], setTags);
       setSelectedFile(file[0].name);
       navigate('/generete');
     }

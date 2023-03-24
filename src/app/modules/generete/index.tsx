@@ -1,3 +1,3 @@
-import Generete from './components/generete';
+import Generate from './components/generate';
 
-export { Generete };
+export { Generate };

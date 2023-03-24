@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import GeneretePage from '../../../../pages/generete';
+import GeneretePage from '../../../../pages/generate';
 
 interface IRoute {
   path: string;
