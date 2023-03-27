@@ -1,5 +1,7 @@
 import { FC, Fragment, ReactNode, useState, MouseEvent } from 'react';
 
+import { Link } from 'react-router-dom';
+
 import Menu from '@mui/material/Menu';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
@@ -42,7 +44,9 @@ const HeaderMenu: FC<IHeaderMenu> = ({ children }) => {
       >
         {pages.map((page) => (
           <MenuItem key={page.name} onClick={handleClose}>
-            <Typography textAlign="center">{page.name}</Typography>
+            <Link to={page.path}>
+              <Typography>{page.name}</Typography>
+            </Link>
           </MenuItem>
         ))}
       </Menu>

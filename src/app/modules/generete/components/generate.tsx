@@ -73,7 +73,7 @@ const Generate = () => {
               />
             ))}
           </Grid>
-          <Grid item lg={4}>
+          <Grid item sx={{ marginLeft: 'auto', marginRight: 'auto' }} lg={4}>
             {imgUrl ? <img src={imgUrl} alt="img-description" /> : null}
             <Button
               sx={{

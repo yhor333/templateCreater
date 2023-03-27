@@ -26,7 +26,6 @@ const TagInpuStyles = {
     position: 'absolute',
     right: 10,
     cursor: 'pointer',
-    zIndex: 10,
     '&:hover': {
       backgroundColor: 'rgba(0, 0, 0, 0)',
     },
