@@ -1,7 +1,7 @@
 {
   "name": "my-appt",
   "version": "0.1.0",
-  "homepage": "https://yhor333.github.io/templateCreater",
+  "homepage": "https://github.com/yhor333/templateCreater",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.10.6",
