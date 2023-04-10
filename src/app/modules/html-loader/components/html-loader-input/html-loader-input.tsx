@@ -15,8 +15,8 @@ const HtmlLoaderInput = () => {
   const navigate = useNavigate();
 
   const [selectedFile, setSelectedFile] = useState('No file...');
-  const [tags, setTags] = useState(['tag1, tag2, tag3, tag4']);
-  const [isLoading, setIsLoading] = useState(false);
+  const [, setTags] = useState(['tag1, tag2, tag3, tag4']);
+  // const [isLoading, setIsLoading] = useState(false);
 
   async function changeHandler(event: React.ChangeEvent<HTMLInputElement>) {
     const file = event.target.files;

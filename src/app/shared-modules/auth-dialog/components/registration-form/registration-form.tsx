@@ -6,7 +6,7 @@ import * as yup from 'yup';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 
-import useUserStore from '../../../../store/user-store';
+// import useUserStore from '../../../../store/user-store';
 import RegistrationFormStyles from './registration-styles';
 import { CustomDialogTitle } from '../../../dialog';
 import { CustomFormControl } from '../../../custom-form';
@@ -46,7 +46,7 @@ const RegistrationForm: FC<IRegistrationForm> = ({
 }) => {
   const {
     register,
-    handleSubmit,
+    // handleSubmit,
     formState: { errors },
   } = useForm<RegistrationFormData>({
     resolver: yupResolver(schema),

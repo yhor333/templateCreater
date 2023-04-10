@@ -3,7 +3,7 @@ import { devtools } from 'zustand/middleware';
 import { immer } from 'zustand/middleware/immer';
 
 import { UserModel } from '../shared-models/user-model';
-import { instance } from '../shared/instance/axios-instance/axios-instance';
+// import { instance } from '../shared/instance/axios-instance/axios-instance';
 
 interface UserState {
   user: UserModel | null;
