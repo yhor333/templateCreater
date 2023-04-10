@@ -1,9 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import { Container } from '@mui/system';
-import TextareaAutosize from '@mui/base/TextareaAutosize';
 
 import TagInput from '../../../ui/tag-input/tag-input';
 
@@ -21,6 +20,17 @@ const tags = ['tag1', 'tag2', 'tag3'];
 
 const Generate = () => {
   const [formData, setFormData] = useState(createFormData(tags));
+  const [imgUrl, setImgUrl] = useState('');
+
+  async function getImg() {
+    try {
+      await fetch('https://picsum.photos/300/400').then((response) => {
+        setImgUrl(response.url);
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -41,6 +51,9 @@ const Generate = () => {
     }
   };
 
+  useEffect(() => {
+    getImg();
+  }, []);
   return (
     <Container sx={{ mt: 15 }}>
       <form
@@ -50,7 +63,7 @@ const Generate = () => {
         }}
       >
         <Grid container>
-          <Grid item md={8}>
+          <Grid item lg={8}>
             {tags.map((title, index) => (
               <TagInput
                 onChange={handleInputChange}
@@ -60,12 +73,26 @@ const Generate = () => {
               />
             ))}
           </Grid>
-          <Grid item>
-            <Button type="submit">GENERETE</Button>
+          <Grid item sx={{ marginLeft: 'auto', marginRight: 'auto' }} lg={4}>
+            {imgUrl ? <img src={imgUrl} alt="img-description" /> : null}
+            <Button
+              sx={{
+                backgroundColor: 'primary.main',
+                color: 'primary.dark',
+                mt: 2,
+                width: '300px',
+                fontSize: 20,
+                '&:hover': {
+                  backgroundColor: 'primary.light',
+                },
+              }}
+              type="submit"
+            >
+              GENERETE
+            </Button>
           </Grid>
         </Grid>
       </form>
-      <TextareaAutosize />
     </Container>
   );
 };
