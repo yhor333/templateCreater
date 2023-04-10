@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/yhor333/templateCreater/static/css/main.41823224.css",
+    "main.js": "/yhor333/templateCreater/static/js/main.74bb6121.js",
+    "index.html": "/yhor333/templateCreater/index.html",
+    "main.41823224.css.map": "/yhor333/templateCreater/static/css/main.41823224.css.map",
+    "main.74bb6121.js.map": "/yhor333/templateCreater/static/js/main.74bb6121.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.41823224.css",
+    "static/js/main.74bb6121.js"
+  ]
+}
