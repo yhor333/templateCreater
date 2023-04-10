@@ -1,6 +1,7 @@
 {
   "name": "my-appt",
   "version": "0.1.0",
+  "homepage": "https://yhor333.github.io/templateCreater",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.10.6",
@@ -29,10 +30,13 @@
     "zustand": "^4.3.6"
   },
   "scripts": {
+    "predeploy": "npm run build",
++   "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    
   },
   "eslintConfig": {
     "extends": [
@@ -51,5 +55,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^5.0.0"
   }
 }
