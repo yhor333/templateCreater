@@ -1,14 +1,16 @@
 import { useEffect, useState } from 'react';
+import Modal from 'react-modal';
 
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
-import { Container } from '@mui/system';
+import Container from '@mui/system/Container';
+import ClearIcon from '@mui/icons-material/Clear';
 
 import TagInput from '../../../ui/tag-input/tag-input';
 
 import { formDataModel } from '../models/form-data-model';
-
-import generateSevice from '../api/generate-service';
+import generateService from '../api/generate-service';
+import GenerateStyles from './generate-styles';
 
 function createFormData(tags: string[]) {
   const obj: formDataModel = {};
@@ -21,6 +23,16 @@ const tags = ['tag1', 'tag2', 'tag3'];
 const Generate = () => {
   const [formData, setFormData] = useState(createFormData(tags));
   const [imgUrl, setImgUrl] = useState('');
+  const currentTemplateId = Number(localStorage.getItem('current_template_id'));
+  const [modalIsOpen, setIsOpen] = useState(false);
+
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
 
   async function getImg() {
     try {
@@ -55,11 +67,15 @@ const Generate = () => {
     getImg();
   }, []);
   return (
-    <Container sx={{ mt: 15 }}>
+    <Container sx={GenerateStyles.container}>
       <form
         onSubmit={(e: React.FormEvent<HTMLFormElement>) => {
           e.preventDefault();
-          generateSevice.generate(formData);
+          try {
+            generateService.createTemplate(currentTemplateId, formData);
+          } catch (error) {
+            console.log(error);
+          }
         }}
       >
         <Grid container>
@@ -73,23 +89,33 @@ const Generate = () => {
               />
             ))}
           </Grid>
-          <Grid item sx={{ marginLeft: 'auto', marginRight: 'auto' }} lg={4}>
+          <Grid item sx={GenerateStyles.imgWrap} lg={4}>
             {imgUrl ? <img src={imgUrl} alt="img-description" /> : null}
             <Button
-              sx={{
-                backgroundColor: 'primary.main',
-                color: 'primary.dark',
-                mt: 2,
-                width: '300px',
-                fontSize: 20,
-                '&:hover': {
-                  backgroundColor: 'primary.light',
-                },
-              }}
+              sx={GenerateStyles.button}
+              onClick={openModal}
               type="submit"
             >
-              GENERETE
+              Create Preset
             </Button>
+            <Modal
+              isOpen={modalIsOpen}
+              onRequestClose={closeModal}
+              style={GenerateStyles}
+              contentLabel="Example Modal"
+              ariaHideApp={false}
+            >
+              <ClearIcon onClick={closeModal} />
+              <button
+                onClick={() => {
+                  generateService.generate(
+                    Number(localStorage.getItem('current_preset_id'))
+                  );
+                }}
+              >
+                Generate
+              </button>
+            </Modal>
           </Grid>
         </Grid>
       </form>

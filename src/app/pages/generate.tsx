@@ -1,5 +1,5 @@
-import { Generate } from '../modules/generete';
+import { Generate } from '../modules/generate';
 
-const GeneretePage = () => <Generate />;
+const GeneratePage = () => <Generate />;
 
-export default GeneretePage;
+export default GeneratePage;

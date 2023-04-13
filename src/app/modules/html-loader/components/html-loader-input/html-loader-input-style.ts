@@ -1,4 +1,4 @@
-const HtmlLoaderinputStyle = {
+const HtmlLoaderInputStyle = {
   title: { fontWeight: 700, fontSize: 30, mb: 4 },
   inputWrap: { display: 'flex' },
   uploadButton: {
@@ -22,4 +22,4 @@ const HtmlLoaderinputStyle = {
   },
 };
 
-export default HtmlLoaderinputStyle;
+export default HtmlLoaderInputStyle;

@@ -7,7 +7,7 @@ import Button from '@mui/material/Button';
 import ClearIcon from '@mui/icons-material/Clear';
 import TextareaAutosize from '@mui/base/TextareaAutosize';
 
-import TagInpuStyles from './tag-input-styles';
+import TagInputStyles from './tag-input-styles';
 import IconButton from '@mui/material/IconButton';
 
 interface ITagInput {
@@ -20,7 +20,6 @@ const TagInput: FC<ITagInput> = ({ title, onChange, handleButton }) => {
   const [isFileUpload, setIsFileUpload] = useState(false);
   const [inputValue, setInputValue] = useState('');
   const [modalIsOpen, setIsOpen] = useState(false);
-
   function openModal() {
     setIsOpen(true);
   }
@@ -29,24 +28,12 @@ const TagInput: FC<ITagInput> = ({ title, onChange, handleButton }) => {
     setIsOpen(false);
   }
 
-  const customStyles = {
-    content: {
-      top: '50%',
-      left: '50%',
-      right: 'auto',
-      bottom: 'auto',
-      marginRight: '-50%',
-      transform: 'translate(-50%, -50%)',
-      zIndex: '100',
-    },
-  };
-
   return (
-    <Box sx={TagInpuStyles.wrap}>
-      <Typography sx={TagInpuStyles.title}>{title}</Typography>
-      <Box sx={TagInpuStyles.textFieldWrap}>
+    <Box sx={TagInputStyles.wrap}>
+      <Typography sx={TagInputStyles.title}>{title}</Typography>
+      <Box sx={TagInputStyles.textFieldWrap}>
         <IconButton
-          sx={TagInpuStyles.iconButton}
+          sx={TagInputStyles.iconButton}
           onClick={() => {
             setInputValue('');
             setIsFileUpload(false);
@@ -63,12 +50,12 @@ const TagInput: FC<ITagInput> = ({ title, onChange, handleButton }) => {
           }}
           name={title}
           value={inputValue}
-          style={TagInpuStyles.textField}
+          style={TagInputStyles.textField}
         />
       </Box>
 
-      <Box sx={TagInpuStyles.buttonsWrpa}>
-        <Button component="label" sx={TagInpuStyles.button}>
+      <Box sx={TagInputStyles.buttonsWrap}>
+        <Button component="label" sx={TagInputStyles.button}>
           Load file
           <input
             type="file"
@@ -83,13 +70,13 @@ const TagInput: FC<ITagInput> = ({ title, onChange, handleButton }) => {
             }}
           />
         </Button>
-        <Button sx={TagInpuStyles.button} onClick={openModal}>
+        <Button sx={TagInputStyles.button} onClick={openModal}>
           preset
         </Button>
         <Modal
           isOpen={modalIsOpen}
           onRequestClose={closeModal}
-          style={customStyles}
+          style={TagInputStyles}
           contentLabel="Example Modal"
         >
           <ClearIcon onClick={closeModal} />

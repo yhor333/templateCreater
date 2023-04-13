@@ -1,5 +1,5 @@
 const pageTitles: Record<string, string> = {
   '/': 'Головна',
-  '/generete': 'Шаблон',
+  '/generate': 'Шаблон',
 };
 export default pageTitles;
