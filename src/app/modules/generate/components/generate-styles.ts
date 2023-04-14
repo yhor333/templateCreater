@@ -19,7 +19,7 @@ const GenerateStyles = {
     marginRight: '-50%',
     transform: 'translate(-50%, -50%)',
     zIndex: '100',
-    minWidth: '300px',
+    minWidth: '340px',
     minHeight: '400px',
   },
 };

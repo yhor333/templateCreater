@@ -4,13 +4,12 @@ import Modal from 'react-modal';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Container from '@mui/system/Container';
-import ClearIcon from '@mui/icons-material/Clear';
 
 import TagInput from '../../../ui/tag-input/tag-input';
 
 import { formDataModel } from '../models/form-data-model';
-import generateService from '../api/generate-service';
 import GenerateStyles from './generate-styles';
+import GenerateModal from './generate-modal/generate-modal';
 
 function createFormData(tags: string[]) {
   const obj: formDataModel = {};
@@ -68,16 +67,7 @@ const Generate = () => {
   }, []);
   return (
     <Container sx={GenerateStyles.container}>
-      <form
-        onSubmit={(e: React.FormEvent<HTMLFormElement>) => {
-          e.preventDefault();
-          try {
-            generateService.createTemplate(currentTemplateId, formData);
-          } catch (error) {
-            console.log(error);
-          }
-        }}
-      >
+      <form>
         <Grid container>
           <Grid item lg={8}>
             {tags.map((title, index) => (
@@ -91,11 +81,7 @@ const Generate = () => {
           </Grid>
           <Grid item sx={GenerateStyles.imgWrap} lg={4}>
             {imgUrl ? <img src={imgUrl} alt="img-description" /> : null}
-            <Button
-              sx={GenerateStyles.button}
-              onClick={openModal}
-              type="submit"
-            >
+            <Button sx={GenerateStyles.button} onClick={openModal}>
               Create Preset
             </Button>
             <Modal
@@ -105,16 +91,10 @@ const Generate = () => {
               contentLabel="Example Modal"
               ariaHideApp={false}
             >
-              <ClearIcon onClick={closeModal} />
-              <button
-                onClick={() => {
-                  generateService.generate(
-                    Number(localStorage.getItem('current_preset_id'))
-                  );
-                }}
-              >
-                Generate
-              </button>
+              <GenerateModal
+                formData={formData}
+                clearIconHandler={closeModal}
+              />
             </Modal>
           </Grid>
         </Grid>
