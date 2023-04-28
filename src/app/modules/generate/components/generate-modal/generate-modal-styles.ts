@@ -4,7 +4,7 @@ const GenerateModalStyles = {
     height: '48px',
     backgroundColor: 'primary.main',
     color: 'primary.dark',
-    width: '100px',
+    width: '100%',
     mb: 1,
     '&:hover': {
       backgroundColor: 'primary.light',

@@ -20,6 +20,9 @@ class htmlLoaderService {
         useTagsStore.setState(response.data.tags);
       });
   }
+  async getTemplates() {
+    return instance.get('/template/').then((response) => response.data);
+  }
 }
 
 const HtmlLoaderService = new htmlLoaderService();

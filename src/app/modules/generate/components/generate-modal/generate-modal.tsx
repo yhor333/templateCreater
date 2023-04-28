@@ -1,4 +1,4 @@
-import { FC, MouseEventHandler, useEffect, useState } from 'react';
+import { Dispatch, FC, MouseEventHandler, useEffect, useState } from 'react';
 
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -29,14 +29,17 @@ type PresetFormData = yup.InferType<typeof schema>;
 interface IGenerateModal {
   clearIconHandler: MouseEventHandler<SVGSVGElement>;
   formData: formDataModel;
+  data: inputsDataModel;
+  setData: Dispatch<inputsDataModel>;
 }
-const GenerateModal: FC<IGenerateModal> = ({ clearIconHandler, formData }) => {
+const GenerateModal: FC<IGenerateModal> = ({
+  clearIconHandler,
+  formData,
+  data,
+  setData,
+}) => {
   const [isGenerateReady, setIsGenerateReady] = useState(false);
-  const [data, setData] = useState<inputsDataModel>({
-    name: '',
-    pageHeight: 146,
-    count: 10,
-  });
+
   const {
     register,
     handleSubmit,
@@ -46,12 +49,6 @@ const GenerateModal: FC<IGenerateModal> = ({ clearIconHandler, formData }) => {
   });
 
   const onSubmit = async () => {};
-
-  const generateHandler = (current_preset_id: number) => {
-    if (current_preset_id !== null) {
-      generateService.generate(Number(current_preset_id), data);
-    }
-  };
 
   useEffect(() => {
     if (data.name && data.pageHeight && data.count) {
@@ -107,16 +104,14 @@ const GenerateModal: FC<IGenerateModal> = ({ clearIconHandler, formData }) => {
           name="count"
           type="number"
           defaultValue={10}
-          onChange={(event) => {
-            setData((prevState) => ({
-              ...prevState,
+          onChange={(event: any) => {
+            setData({
+              ...data,
               count: +event.target.value,
-            }));
-            console.log(data.count);
-            console.log(Boolean(data.count));
+            });
           }}
         />
-        <Box sx={GenerateModalStyles.buttonWrap}>
+        <Box>
           <Button
             type="submit"
             onClick={() => {
@@ -135,20 +130,21 @@ const GenerateModal: FC<IGenerateModal> = ({ clearIconHandler, formData }) => {
           >
             Save preset
           </Button>
-          <Button
+          {/* <Button
             type="submit"
             disabled={!isGenerateReady}
             onClick={async () => {
               const currentTemplateId = localStorage.getItem(
                 'current_template_id'
               );
-              if (currentTemplateId !== null) {
+              const currentPresetId = localStorage.getItem('current_preset_id');
+              if (currentPresetId === undefined) {
                 const current_preset_id = await generateService.createTemplate(
                   Number(currentTemplateId),
                   formData,
                   data
                 );
-                if (current_preset_id !== null) {
+                if (current_preset_id === null) {
                   generateHandler(current_preset_id);
                 }
               }
@@ -156,7 +152,7 @@ const GenerateModal: FC<IGenerateModal> = ({ clearIconHandler, formData }) => {
             sx={GenerateModalStyles.button}
           >
             Generate
-          </Button>
+          </Button> */}
         </Box>
       </Box>
     </form>

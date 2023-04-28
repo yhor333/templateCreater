@@ -4,9 +4,10 @@ const GenerateStyles = {
   button: {
     backgroundColor: 'primary.main',
     color: 'primary.dark',
-    mt: 2,
-    width: '300px',
-    fontSize: 20,
+    mt: 1,
+    mr: 1,
+    width: '146px',
+    fontSize: 18,
     '&:hover': {
       backgroundColor: 'primary.light',
     },

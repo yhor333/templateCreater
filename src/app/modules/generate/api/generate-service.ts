@@ -4,14 +4,6 @@ import { formDataModel } from '../models/form-data-model';
 import { inputsDataModel } from '../models/inputsDataModel';
 
 class GenerateService {
-  // async generate(formData: formDataModel) {
-  //   const params = this.createParams();
-  //   await instance.post(`/generate?${params}`, formData, {
-  //     headers: {
-  //       'Content-Type': 'multipart/form-data',
-  //     },
-  //   });
-  // }
   async createTemplate(
     template_id: number,
     formData: formDataModel,
@@ -22,7 +14,11 @@ class GenerateService {
       page_height: data.pageHeight,
     });
     return instance
-      .post(`/template/${template_id}/presets?${params}`, formData)
+      .post(`/template/${template_id}/presets?${params}`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      })
       .then((response) => {
         localStorage.setItem('current_preset_id', response.data.id);
         return response.data.id;
